@@ -4,7 +4,7 @@
 
 # Supplycart Interview Case Study
 
-This case study is designed for candidates to showcase their skills and coding style focusing on Laravel, Vue and TailwindCSS. You may use more technologies apart from the 3 mentioned. 
+This case study is designed for candidates to showcase their skills and coding style focusing on Laravel, Vue and TailwindCSS. You may use more technologies apart from the 3 mentioned.
 
 ### Instructions
 
@@ -38,3 +38,11 @@ You must work on this assignment using:
 4. Different user can see different price for products
 5. Add unit tests
 6. Deploy app to a server
+
+### Information
+
+1. Replicate .env.example to .env
+2. Create database supplycart
+3. Run migration
+4. Run UserSeeder, ProductSeeder, CategorySeeder
+5. UserSeeder creates user01 and user02, user01 is a vip member and user02 is a normal member. Product price will be different according to member type.

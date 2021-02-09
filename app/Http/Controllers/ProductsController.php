@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Log;
 use Session;
 
 class ProductsController extends Controller
@@ -24,7 +25,7 @@ class ProductsController extends Controller
                     $id => [
                         "name" => $product->name,
                         "quantity" => 1,
-                        "price" => $product->price,
+                        "price" => auth()->user()->is_vip == 0 ? $product->price : $product->vip_price,
                     ]
             ];
             session()->put('cart', $cart);
@@ -40,7 +41,7 @@ class ProductsController extends Controller
         $cart[$id] = [
             "name" => $product->name,
             "quantity" => 1,
-            "price" => $product->price,
+            "price" => auth()->user()->is_vip == 0 ? $product->price : $product->vip_price,
         ];
         session()->put('cart', $cart);
         return redirect()->back()->with('success-add-cart', 'Product added to cart successfully!');
@@ -98,6 +99,11 @@ class ProductsController extends Controller
         }
 
         Session::forget('cart');
+
+        $log = New Log();
+        $log->user_id = auth()->user()->id;
+        $log->activity = 'Place Order';
+        $log->save();
 
         return redirect()->to('/orders');
     }

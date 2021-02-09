@@ -85,6 +85,7 @@
                 @if(auth()->check())
                     <a href="/cart">My Cart</a>
                     <a href="/orders">Order History</a>
+                    <a href="/logs">Activity Log</a>
                     <a href="#">Hi {{ auth()->user()->name }}</a>
                     <a href="/logout">Logout</a>
                 @endif
